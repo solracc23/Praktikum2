@@ -1054,93 +1054,6 @@
             ]
           },
           {
-            "shape": "flow",
-            "attrs": {
-              "line": {
-                "stroke": "red",
-                "strokeWidth": 2.5,
-                "targetMarker": {
-                  "name": "block"
-                },
-                "sourceMarker": {
-                  "name": ""
-                },
-                "strokeDasharray": null
-              }
-            },
-            "width": 200,
-            "height": 100,
-            "zIndex": 10,
-            "connector": "smooth",
-            "data": {
-              "type": "tm.Flow",
-              "name": "Telefonnummer, OTT",
-              "description": "",
-              "outOfScope": false,
-              "isTrustBoundary": false,
-              "reasonOutOfScope": "",
-              "hasOpenThreats": true,
-              "isBidirectional": false,
-              "isEncrypted": false,
-              "isPublicNetwork": false,
-              "protocol": "",
-              "threats": [
-                {
-                  "id": "fac1eea9-0df2-45c1-a3ee-ba8962ba2996",
-                  "title": "Rechtesusweitung",
-                  "status": "Open",
-                  "severity": "TBD",
-                  "type": "Tampering",
-                  "description": "Ein Angreifer, der (z. B. durch kompromittiertes internes Gerät oder unsichere Netzsegmente) Zugriff auf das interne Netzwerk erlangt, kann OTT-Nachrichten auf dem Weg vom 2FA-Backend zum Allsecure Mobile Phone OTT-Service abfangen und manipulieren.\nEr könnte z. B. den OTP manipulieren oder durch einen eigenen Wert ersetzen und so Anmeldungen kapern.\n\nAngriffsvektor:\n\nMan-in-the-Middle im internen Netzwerk\n\nManipulation unzureichend authentifizierter API-Requests\n\nSchwache/fehlende TLS-Validierung\n\nKompromittierter interner Proxy\n\nCAPEC-ID:CAPEC-94 – Man-in-the-Middle Attack\n\nMITRE ATT&CK Taktik:TA0006 – Credential Access\n\nD: 10 / R: 8 / E: 7 / A: 10 / DREA: 35",
-                  "mitigation": "mutual TLS einführen, damit sich beide Systeme gegenseitig mittels Zertifikate authentifizieren müssen (dabei mindestens TLS 1.2 verwenden).\n\nASVS: CWE 295 (9.2.1): Prüfen Sie, dass Verbindungen zum und vom Server vertrauenswürdige TLS-Zertifikate verwenden. Werden intern generierte oder selbstsignierte Zertifikate verwendet, muss der Server so konfiguriert werden, dass er nur bestimmten internen CAs vertraut. Alle anderen müssen abgelehnt werden.\n\nD: 5 / R: 4 / E: 4 / A: 4 / Neuer DREA: 17",
-                  "modelType": "STRIDE",
-                  "new": false,
-                  "number": 110,
-                  "score": ""
-                }
-              ],
-              "threatFrequency": {
-                "tampering": 1,
-                "informationDisclosure": 0,
-                "denialOfService": 0
-              }
-            },
-            "labels": [
-              {
-                "attrs": {
-                  "label": {
-                    "text": "Antwort"
-                  }
-                },
-                "position": {
-                  "distance": 0.4667551402818713,
-                  "offset": -12.917577739081434
-                }
-              }
-            ],
-            "id": "10939d18-1017-4b86-841d-9f5394f83f90",
-            "source": {
-              "cell": "ebc88767-2bed-409f-b854-efadec206ba8"
-            },
-            "target": {
-              "cell": "94f68ce7-aa88-45a4-ba41-c0b62d6a959c"
-            },
-            "vertices": [
-              {
-                "x": 810,
-                "y": 48
-              },
-              {
-                "x": 770,
-                "y": 65
-              },
-              {
-                "x": 690,
-                "y": 65
-              }
-            ]
-          },
-          {
             "shape": "trust-broundary-curve",
             "width": 200,
             "height": 100,
@@ -1575,6 +1488,78 @@
             "connector": "smooth",
             "data": {
               "type": "tm.Flow",
+              "name": "Telefonnummer, OTT",
+              "description": "",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": [],
+              "threatFrequency": {
+                "tampering": 0,
+                "informationDisclosure": 0,
+                "denialOfService": 0
+              }
+            },
+            "labels": [
+              {
+                "attrs": {
+                  "label": {
+                    "text": "Antwort"
+                  }
+                },
+                "position": {
+                  "distance": 0.4667551402818713,
+                  "offset": -12.917577739081434
+                }
+              }
+            ],
+            "id": "10939d18-1017-4b86-841d-9f5394f83f90",
+            "source": {
+              "cell": "ebc88767-2bed-409f-b854-efadec206ba8"
+            },
+            "target": {
+              "cell": "94f68ce7-aa88-45a4-ba41-c0b62d6a959c"
+            },
+            "vertices": [
+              {
+                "x": 810,
+                "y": 48
+              },
+              {
+                "x": 770,
+                "y": 65
+              },
+              {
+                "x": 690,
+                "y": 65
+              }
+            ]
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
               "name": "Telefonnummer, OOT",
               "description": "",
               "outOfScope": false,
@@ -1635,7 +1620,17 @@
                 "x": 340,
                 "y": 180
               }
-            ]
+            ],
+            "tools": {
+              "items": [
+                "boundary",
+                "button-remove",
+                "vertices",
+                "source-arrowhead",
+                "target-arrowhead"
+              ],
+              "name": null
+            }
           },
           {
             "position": {
