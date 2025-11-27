@@ -267,8 +267,8 @@
                   "status": "Mitigated",
                   "severity": "Medium",
                   "type": "Spoofing",
-                  "description": "Beschreibung: Da die interne Kommunikation unverschlüsselt ist, kann ein Angreifer im Netzwerk den Datenverkehr abfangen (\"Man-in-the-Middle\"). Er liest den One-Time-Token (OTT) im Klartext mit und nutzt diesen, um sich beim Login-System als der legitime Benutzer auszugeben (Spoofing).\n\nCAPEC-ID: CAPEC-151 (Identity Spoofing)\n\nATT&CK-ID: T1557 (Adversary-in-the-Middle)\n\nD: 9 / R: 8 / E: 7 / A: 9 / DREA: 33",
-                  "mitigation": "Transportverschlüsselung und Strict Certificate Validation um unsichere Protokolle zu deaktivieren und selbstsignierte Zertifikate abzulehnen.\n\nMASVS-Network-1: Die Absicherung der Datenübertragung erfordert zwingend Verschlüsselung und eine zuverlässige Authentifizierung des Kommunikationspartners, z. B. über TLS. Da Entwickler Sicherheitsmechanismen jedoch leicht umgehen oder falsch konfigurieren können, muss sichergestellt werden, dass die Anwendung immer ausschließlich sichere Verbindungen nutzt.\nD: 5 / R: 4 / E: 4 / A: 4 / Neuer DREA: 17",
+                  "description": "Da die interne Kommunikation unverschlüsselt ist, kann ein \"Man-in-the-Middle\" im Netzwerk den Datenverkehr abfangen. Er stehlt die OTT, um sich beim Login-System als der legitime Benutzer auszugeben.\n\nCAPEC-ID: CAPEC-151 (Identity Spoofing)\n\nATT&CK-ID: T1557 (Adversary-in-the-Middle)\n\nD: 9 / R: 8 / E: 7 / A: 9 / DREA: 33",
+                  "mitigation": "Einsatz von TLS-Verschlüsselung und Strict Certificate Validation.\n\nMASVS-Network-1: Die Absicherung der Datenübertragung erfordert zwingend Verschlüsselung und eine zuverlässige Authentifizierung des Kommunikationspartners, z. B. über TLS. Da Entwickler Sicherheitsmechanismen jedoch leicht umgehen oder falsch konfigurieren können, muss sichergestellt werden, dass die Anwendung immer ausschließlich sichere Verbindungen nutzt.\n\nUmsetzung: Nur HTTPS, Nur starke Algorithmen (AES-GCM, ChaCha20-Poly1305),Zertifikatsprüfung mit CA\n\nD: 5 / R: 4 / E: 4 / A: 4 / Neuer DREA: 17",
                   "modelType": "STRIDE",
                   "new": false,
                   "number": 107,
@@ -280,7 +280,7 @@
               "handlesCardPayment": null,
               "handlesGoodsOrServices": null,
               "threatFrequency": {
-                "spoofing": 5,
+                "spoofing": 12,
                 "tampering": 0,
                 "repudiation": 0,
                 "informationDisclosure": 0,
@@ -292,7 +292,7 @@
           {
             "position": {
               "x": 495,
-              "y": -21.999999999999922
+              "y": -21.999999999999915
             },
             "size": {
               "width": 130,
@@ -408,8 +408,8 @@
                   "status": "Mitigated",
                   "severity": "Medium",
                   "type": "Denial of service",
-                  "description": "Beschreibung: Ein Angreifer überflutet den 2-Faktor-Dienst mit einer massiven Anzahl an Anfragen (Flooding). Da der Dienst aus Kostengründen nicht redundant ausgelegt ist, werden die Ressourcen erschöpft, der Server stürzt ab, und legitime Nutzer können sich nicht mehr anmelden.\n\nCAPEC-ID: CAPEC-125 (Flooding)\n\nATT&CK-ID: T1498 (Network Denial of Service)\n\nD: 9 / R: 10 / E: 9 / A: 9 / DREA: 37",
-                  "mitigation": "Burst Handling und Adaptive Rate Limits, damit ungewöhnliche Anfragen eher nicht durchgehen\n\nDEFEND: D3-ITF - Inbound Traffic Filtering: Filter auf Netzwerkebene, um unerwünschte oder auffällig häufige Verbindungen abzulehnen, z. B. durch IP‑Blocklisten, Geo‑Restriktionen oder andere Regeln, die verdächtige Quellen aussperren.\nD3-PMAD -  Protocol Metadata Anomaly Detection: Analyse des Netzwerkverkehrs auf Anomalien, z. B. ungewöhnlich hohe Request-Raten oder nicht‑normkonforme Paketsequenzen, um Flooding frühzeitig zu erkennen.\n\n\nD: 5 / R: 5 / E: 5 / A: 5 / Neuer DREA: 20",
+                  "description": "Angreifer überflutet den 2-Faktor-Dienst mit einer massiven Anzahl an Anfragen. Da der Dienst nicht redundant ausgelegt ist, werden die Ressourcen erschöpft, der Server stürzt ab, und legitime Nutzer können sich nicht mehr anmelden.\n\nCAPEC-ID: CAPEC-125 (Flooding)\n\nATT&CK-ID: T1498 (Network Denial of Service)\n\nD: 9 / R: 10 / E: 9 / A: 9 / DREA: 37",
+                  "mitigation": "Erlaubt kurze Lastspitzen (Burst Handling) und Adaptive Rate Limits, damit ungewöhnliche Anfragen eher nicht durchgehen\n\nDEFEND: D3-ITF - Inbound Traffic Filtering: Filter auf Netzwerkebene, um unerwünschte oder auffällig häufige Verbindungen abzulehnen, z. B. durch IP‑Blocklisten, Geo‑Restriktionen oder andere Regeln, die verdächtige Quellen aussperren.\nD3-PMAD -  Protocol Metadata Anomaly Detection: Analyse des Netzwerkverkehrs auf Anomalien, z. B. ungewöhnlich hohe Request-Raten oder nicht‑normkonforme Paketsequenzen, um Flooding frühzeitig zu erkennen.\n\numsetzung: Token‑Bucket oder Leaky‑Bucket Algorithmen implementieren, Dynamische Limits pro IP, User oder API‑Key\n\nD: 5 / R: 5 / E: 5 / A: 5 / Neuer DREA: 20",
                   "modelType": "STRIDE",
                   "new": false,
                   "number": 105,
@@ -429,7 +429,7 @@
                 "tampering": 0,
                 "repudiation": 0,
                 "informationDisclosure": 0,
-                "denialOfService": 9,
+                "denialOfService": 12,
                 "elevationOfPrivilege": 0
               }
             }
@@ -553,8 +553,8 @@
                   "status": "Mitigated",
                   "severity": "Medium",
                   "type": "Information disclosure",
-                  "description": "Beschreibung: Ein Angreifer verschafft sich Zugriff auf das Dateisystem des Servers. Dort liest er den statischen symmetrischen Schlüssel aus, der im Klartext in einer ungeschützten Konfigurationsdatei gespeichert ist (\"Hardcoded Secret\"). Mit diesem Schlüssel kann er den gesamten verschlüsselten Verkehr entschlüsseln.\n\nCAPEC-ID: CAPEC-37 (Retrieve Embedded Sensitive Data)\n\nATT&CK-ID: T1552 (Unsecured Credentials)\n\nD: 10 / R: 9 / E: 8 / A: 10 / DREA: 37",
-                  "mitigation": "Secret-Security-Management einführen, um den Schutz der OTPs zu überprüfen\n\nASVS: CWE 320 (2.8.2): Prüfen Sie, dass die symmetrischen Schlüssel, die zur Prüfung der eingegebenen OTPs verwendet werden, sicher geschützt sind, z.B. durch Verwendung eines HSM oder der sicheren Schlüsselspeicherung des Betriebssystems.\n\nD: 5 / R: 5 / E: 4 / A: 5 / Neuer DREA: 19",
+                  "description": "Ein Angreifer verschafft sich Zugriff auf das Dateisystem des Servers. Dort liest er den statischen symmetrischen Schlüssel aus, der im Klartext in einer ungeschützten Konfigurationsdatei gespeichert ist (\"Hardcoded Secret\"). Mit diesem Schlüssel kann er den gesamten verschlüsselten Verkehr entschlüsseln.\n\nCAPEC-ID: CAPEC-37 (Retrieve Embedded Sensitive Data)\n\nATT&CK-ID: T1552 (Unsecured Credentials)\n\nD: 10 / R: 9 / E: 8 / A: 10 / DREA: 37",
+                  "mitigation": "Secret-Security-Management und Keine Hardcoded Secrets einführen\n\nASVS: CWE 320 (2.8.2): Prüfen Sie, dass die symmetrischen Schlüssel, die zur Prüfung der eingegebenen OTPs verwendet werden, sicher geschützt sind, z.B. durch Verwendung eines Hardware Security Module (HSM) oder der sicheren Schlüsselspeicherung des Betriebssystems.\n\nTechnische Umsetzung: Nutzung von Vaults, [dynamische Secrets]\n\nD: 5 / R: 5 / E: 4 / A: 5 / Neuer DREA: 19",
                   "modelType": "STRIDE",
                   "new": false,
                   "number": 104,
@@ -568,7 +568,7 @@
                 "spoofing": 0,
                 "tampering": 0,
                 "repudiation": 0,
-                "informationDisclosure": 3,
+                "informationDisclosure": 5,
                 "denialOfService": 0,
                 "elevationOfPrivilege": 0
               },
@@ -953,55 +953,6 @@
             "connector": "smooth",
             "data": {
               "type": "tm.Flow",
-              "name": "Log(Login, OTT, Phone Number)",
-              "description": "",
-              "outOfScope": false,
-              "isTrustBoundary": false,
-              "reasonOutOfScope": "",
-              "hasOpenThreats": false,
-              "isBidirectional": false,
-              "isEncrypted": false,
-              "isPublicNetwork": false,
-              "protocol": "",
-              "threats": []
-            },
-            "labels": [
-              "Log(Login, OTT, Phone Number)"
-            ],
-            "id": "81c8482c-19ed-41ab-bae2-a5561223b4b5",
-            "source": {
-              "cell": "94f68ce7-aa88-45a4-ba41-c0b62d6a959c"
-            },
-            "target": {
-              "cell": "c2716661-ef88-48a8-8d0f-724e1923d562"
-            },
-            "vertices": [
-              {
-                "x": 559.5,
-                "y": -60
-              }
-            ]
-          },
-          {
-            "shape": "flow",
-            "attrs": {
-              "line": {
-                "stroke": "#333333",
-                "targetMarker": {
-                  "name": "block"
-                },
-                "sourceMarker": {
-                  "name": ""
-                },
-                "strokeDasharray": null
-              }
-            },
-            "width": 200,
-            "height": 100,
-            "zIndex": 10,
-            "connector": "smooth",
-            "data": {
-              "type": "tm.Flow",
               "name": "Auslesen von Informationen",
               "description": "",
               "outOfScope": false,
@@ -1089,6 +1040,10 @@
             },
             "vertices": [
               {
+                "x": 700,
+                "y": 20
+              },
+              {
                 "x": 720,
                 "y": 13
               },
@@ -1102,7 +1057,8 @@
             "shape": "flow",
             "attrs": {
               "line": {
-                "stroke": "#333333",
+                "stroke": "red",
+                "strokeWidth": 2.5,
                 "targetMarker": {
                   "name": "block"
                 },
@@ -1123,12 +1079,31 @@
               "outOfScope": false,
               "isTrustBoundary": false,
               "reasonOutOfScope": "",
-              "hasOpenThreats": false,
+              "hasOpenThreats": true,
               "isBidirectional": false,
               "isEncrypted": false,
               "isPublicNetwork": false,
               "protocol": "",
-              "threats": []
+              "threats": [
+                {
+                  "id": "fac1eea9-0df2-45c1-a3ee-ba8962ba2996",
+                  "title": "Rechtesusweitung",
+                  "status": "Open",
+                  "severity": "TBD",
+                  "type": "Tampering",
+                  "description": "Ein Angreifer, der (z. B. durch kompromittiertes internes Gerät oder unsichere Netzsegmente) Zugriff auf das interne Netzwerk erlangt, kann OTT-Nachrichten auf dem Weg vom 2FA-Backend zum Allsecure Mobile Phone OTT-Service abfangen und manipulieren.\nEr könnte z. B. den OTP manipulieren oder durch einen eigenen Wert ersetzen und so Anmeldungen kapern.\n\nAngriffsvektor:\n\nMan-in-the-Middle im internen Netzwerk\n\nManipulation unzureichend authentifizierter API-Requests\n\nSchwache/fehlende TLS-Validierung\n\nKompromittierter interner Proxy\n\nCAPEC-ID:CAPEC-94 – Man-in-the-Middle Attack\n\nMITRE ATT&CK Taktik:TA0006 – Credential Access\n\nD: 10 / R: 8 / E: 7 / A: 10 / DREA: 35",
+                  "mitigation": "mutual TLS einführen, damit sich beide Systeme gegenseitig mittels Zertifikate authentifizieren müssen (dabei mindestens TLS 1.2 verwenden).\n\nASVS: CWE 295 (9.2.1): Prüfen Sie, dass Verbindungen zum und vom Server vertrauenswürdige TLS-Zertifikate verwenden. Werden intern generierte oder selbstsignierte Zertifikate verwendet, muss der Server so konfiguriert werden, dass er nur bestimmten internen CAs vertraut. Alle anderen müssen abgelehnt werden.\n\nD: 5 / R: 4 / E: 4 / A: 4 / Neuer DREA: 17",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 110,
+                  "score": ""
+                }
+              ],
+              "threatFrequency": {
+                "tampering": 1,
+                "informationDisclosure": 0,
+                "denialOfService": 0
+              }
             },
             "labels": [
               {
@@ -1157,6 +1132,10 @@
               },
               {
                 "x": 770,
+                "y": 65
+              },
+              {
+                "x": 690,
                 "y": 65
               }
             ]
@@ -1275,88 +1254,6 @@
               {
                 "x": 440,
                 "y": 270
-              }
-            ]
-          },
-          {
-            "shape": "flow",
-            "attrs": {
-              "line": {
-                "stroke": "#333333",
-                "targetMarker": {
-                  "name": "block"
-                },
-                "sourceMarker": {
-                  "name": ""
-                },
-                "strokeDasharray": null
-              }
-            },
-            "width": 200,
-            "height": 100,
-            "zIndex": 10,
-            "connector": "smooth",
-            "data": {
-              "type": "tm.Flow",
-              "name": "Telefonnummer, OOT",
-              "description": "",
-              "outOfScope": false,
-              "isTrustBoundary": false,
-              "reasonOutOfScope": "",
-              "hasOpenThreats": false,
-              "isBidirectional": false,
-              "isEncrypted": false,
-              "isPublicNetwork": false,
-              "protocol": "",
-              "threats": [
-                {
-                  "id": "3bbb49c7-3544-41e6-a08d-5933d440deb2",
-                  "title": "Rechteausweitung",
-                  "status": "Mitigated",
-                  "severity": "Medium",
-                  "type": "Tampering",
-                  "description": "Beschreibung:\n\nEin Angreifer, der (z. B. durch kompromittiertes internes Gerät oder unsichere Netzsegmente) Zugriff auf das interne Netzwerk erlangt, kann OTT-Nachrichten auf dem Weg vom 2FA-Backend zum Allsecure Mobile Phone OTT-Service abfangen und manipulieren.\nEr könnte z. B. den OTP manipulieren oder durch einen eigenen Wert ersetzen und so Anmeldungen kapern.\n\nAngriffsvektor:\n\nMan-in-the-Middle im internen Netzwerk\n\nManipulation unzureichend authentifizierter API-Requests\n\nSchwache/fehlende TLS-Validierung\n\nKompromittierter interner Proxy\n\nCAPEC-ID:\n\n📌 CAPEC-94 – Man-in-the-Middle Attack\n\nMITRE ATT&CK Taktik:\n\n📌 TA0006 – Credential Access\n\nD: 10 / R: 8 / E: 7 / A: 10 / DREA: 35",
-                  "mitigation": "mutual TLS einführen, damit sich beide Systeme gegenseitig mittels Zertifikate authentifizieren müssen (dabei mindestens TLS 1.2 verwenden).\n\nASVS: CWE 295 (9.2.1): Prüfen Sie, dass Verbindungen zum und vom Server vertrauenswürdige TLS-Zertifikate verwenden. Werden intern generierte oder selbstsignierte Zertifikate verwendet, muss der Server so konfiguriert werden, dass er nur bestimmten internen CAs vertraut. Alle anderen müssen abgelehnt werden.\n\nD: 5 / R: 4 / E: 4 / A: 4 / Neuer DREA: 17",
-                  "modelType": "STRIDE",
-                  "new": false,
-                  "number": 109,
-                  "score": "17"
-                }
-              ],
-              "threatFrequency": {
-                "tampering": 3,
-                "informationDisclosure": 0,
-                "denialOfService": 0
-              }
-            },
-            "labels": [
-              "Telefonnummer, OOT"
-            ],
-            "id": "db22007a-98ad-48f2-9fe7-9da60d2a41bb",
-            "source": {
-              "x": 493,
-              "y": 91
-            },
-            "target": {
-              "cell": "54893037-6b22-4db0-a89e-e87de40a10aa",
-              "port": "7c7885d6-de57-47e0-b48e-96b353fab3a7"
-            },
-            "vertices": [
-              {
-                "x": 430,
-                "y": 140
-              },
-              {
-                "x": 410,
-                "y": 160
-              },
-              {
-                "x": 380,
-                "y": 180
-              },
-              {
-                "x": 360,
-                "y": 180
               }
             ]
           },
@@ -1561,6 +1458,186 @@
             ]
           },
           {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "OTT",
+              "description": "",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": []
+            },
+            "labels": [
+              "OTT"
+            ],
+            "id": "6b89c31a-d0b3-41a2-968c-f515d08236f5",
+            "source": {
+              "cell": "54893037-6b22-4db0-a89e-e87de40a10aa",
+              "port": "55c4dc9b-7151-4869-a981-08b44658e80c"
+            },
+            "target": {
+              "cell": "a1d5bbe6-465f-43bb-bd96-7ce687db37aa",
+              "port": "d8eb18e9-50e1-4079-8460-2521eb86f35b"
+            }
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Log(Login, OTT, Phone Number)",
+              "description": "",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": []
+            },
+            "labels": [
+              "Log(Login, OTT, Phone Number)"
+            ],
+            "id": "81c8482c-19ed-41ab-bae2-a5561223b4b5",
+            "source": {
+              "cell": "94f68ce7-aa88-45a4-ba41-c0b62d6a959c"
+            },
+            "target": {
+              "cell": "c2716661-ef88-48a8-8d0f-724e1923d562"
+            },
+            "vertices": [
+              {
+                "x": 560,
+                "y": -30
+              },
+              {
+                "x": 559.5,
+                "y": -60
+              }
+            ]
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Telefonnummer, OOT",
+              "description": "",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": [
+                {
+                  "id": "3bbb49c7-3544-41e6-a08d-5933d440deb2",
+                  "title": "Rechteausweitung",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Tampering",
+                  "description": "Man-in-the-Middle „zwischen“ Server und Handy-Dienst, fängt die Nachricht ab und manipuliert den Einmalcode, um die Anmeldung zu übernehmen\n\nManipulation unzureichend authentifizierter API-Requests,\nSchwache/fehlende TLS-Validierung,\nKompromittierter interner Proxy\n\nCAPEC-ID:CAPEC-94 – Man-in-the-Middle Attack\nMITRE ATT&CK Taktik: TA0006 – Credential Access\n\nD: 10 / R: 8 / E: 7 / A: 10 / DREA: 35",
+                  "mitigation": "mutual TLS einführen, damit sich beide Systeme gegenseitig mittels Zertifikate authentifizieren müssen (Zero Trust).\n\nASVS: CWE 295 (9.2.1): Prüfen Sie, dass Verbindungen zum und vom Server vertrauenswürdige TLS-Zertifikate verwenden. Werden intern generierte oder selbstsignierte Zertifikate verwendet, muss der Server so konfiguriert werden, dass er nur bestimmten internen CAs vertraut. Alle anderen müssen abgelehnt werden.\n\nUmsetzung: Interne CA und Zertifikate erstellen. Serverseitige Client-Auth aktivieren\n\nD: 5 / R: 4 / E: 4 / A: 4 / Neuer DREA: 17",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 109,
+                  "score": "17"
+                }
+              ],
+              "threatFrequency": {
+                "tampering": 4,
+                "informationDisclosure": 0,
+                "denialOfService": 0
+              }
+            },
+            "labels": [
+              "Telefonnummer, OOT"
+            ],
+            "id": "db22007a-98ad-48f2-9fe7-9da60d2a41bb",
+            "source": {
+              "x": 493,
+              "y": 91
+            },
+            "target": {
+              "cell": "54893037-6b22-4db0-a89e-e87de40a10aa",
+              "port": "7c7885d6-de57-47e0-b48e-96b353fab3a7"
+            },
+            "vertices": [
+              {
+                "x": 430,
+                "y": 140
+              },
+              {
+                "x": 430,
+                "y": 160
+              },
+              {
+                "x": 410,
+                "y": 180
+              },
+              {
+                "x": 340,
+                "y": 180
+              }
+            ]
+          },
+          {
             "position": {
               "x": 410,
               "y": -174
@@ -1686,8 +1763,8 @@
                   "status": "Mitigated",
                   "severity": "Medium",
                   "type": "Repudiation",
-                  "description": "Beschreibung: Ein Angreifer im internen Netz fängt den unverschlüsselten Datenverkehr zur Log-Datenbank ab. Er löscht gezielt Protokoll-Pakete (Logs) oder verändert deren Inhalt, bevor sie gespeichert werden. Dadurch werden Spuren von Angriffen verwischt, und Aktionen können nicht mehr zweifelsfrei nachgewiesen werden.\n\nCAPEC-ID: CAPEC-93 (Log Injection-Tampering-Forging)\n\nATT&CK-ID: T1070 (Indicator Removal)\n\nD: 10 / R: 8 / E: 8 / A: 10 / DREA: 36",
-                  "mitigation": "sichere Transportverschlüsselung, damit Logs mit TLS 1.2 oder höher übertragen werden.\n\nASVS: CWE 319 (9.1.1): Prüfen Sie, dass der Client stets TLS-Verbindungen verwendet, das nicht auf unsichere oder unverschlüsselte Konfigurationen zurückfallen.\nASVS: CWE 326 (9.1.2): Prüfen Sie mit aktuellen TLS-Testtools, dass nur starke Algorithmen und Protokolle genutzt werden. Dabei sind die stärksten Algorithmen und neuesten Protokollversionen zu bevorzugen.\n\nD: 5 / R: 4 / E: 4 / A: 4 / Neuer DREA: 17",
+                  "description": "Ein Angreifer im internen Netz fängt den unverschlüsselten Datenverkehr zur Log-Datenbank ab. Er löscht gezielt Protokoll-Pakete (Logs) oder verändert deren Inhalt, bevor sie gespeichert werden. Dadurch werden Spuren von Angriffen verwischt, und Aktionen können nicht mehr zweifelsfrei nachgewiesen werden.\n\nCAPEC-ID: CAPEC-93 (Log Injection-Tampering-Forging)\nATT&CK-ID: T1070 (Indicator Removal)\n\nD: 10 / R: 8 / E: 8 / A: 10 / DREA: 36",
+                  "mitigation": "sichere Transportverschlüsselung, damit Logs mit TLS 1.2 oder höher übertragen werden.\n\nASVS: CWE 319 (9.1.1): Prüfen Sie, dass der Client stets TLS-Verbindungen verwendet, das nicht auf unsichere oder unverschlüsselte Konfigurationen zurückfallen.\nASVS: CWE 326 (9.1.2): Prüfen Sie mit aktuellen TLS-Testtools, dass nur starke Algorithmen und Protokolle genutzt werden. Dabei sind die stärksten Algorithmen und neuesten Protokollversionen zu bevorzugen.\n\nUmsetzung: TLS und moderne Algorithmen wie AES‑GCM\n\nD: 5 / R: 4 / E: 4 / A: 4 / Neuer DREA: 17",
                   "modelType": "STRIDE",
                   "new": false,
                   "number": 103,
@@ -1696,7 +1773,7 @@
               ],
               "threatFrequency": {
                 "tampering": 0,
-                "repudiation": 3,
+                "repudiation": 6,
                 "informationDisclosure": 0,
                 "denialOfService": 0
               },
@@ -1952,7 +2029,7 @@
           {
             "position": {
               "x": 510,
-              "y": 220
+              "y": 215
             },
             "size": {
               "width": 100,
@@ -2073,8 +2150,8 @@
                   "status": "Mitigated",
                   "severity": "Medium",
                   "type": "Elevation of privilege",
-                  "description": "Beschreibung:\n\nDas SIEM-System sammelt Logs und Events aus dem 2FA-Service und dem OTT-Service und verfügt damit über hohe Rechte.\nEin Angreifer könnte durch Ausnutzen einer Schwachstelle im SIEM (z. B. fehlerhafte Rollenverwaltung, unsichere Plugins oder Remote Code Execution in der Log-Parsing-Engine) höhere Rechte erlangen und damit:\n\nAdmin-Zugriff auf angeschlossene Systeme erhalten\n\nLogs manipulieren (Spuren verwischen)\n\n2FA-/OTT-Konfiguration ändern\n\nweitere Systeme im Trust-Zone kompromittieren\n\nAngriffsvektor:\n\nInjection in Log-Einträgen („Log Injection“)\n\nExploit in der SIEM-Parsing-Engine\n\nSchwache Privilegentrennung im SIEM\n\nRemote Code Execution durch manipulierte Device-Logs\n\nCAPEC-ID: CAPEC-233 – Privilege Escalation\nMITRE ATT&CK Taktik: A0004 – Privilege Escalation\n\nD: 10 / R: 7 / E: 7 / A: 10 / DREA: 34",
-                  "mitigation": "Strikte Rollen- und Rechteverwaltung (RBAC) umsetzen, damit ein Angreifer durch Log Injection keine höheren Rechte erhalten kann und SIEM Benutzer Least Privilege erhalten.\n\nASVS: CWE 285 (4.1.3): Prüfen Sie, dass das Prinzip der minimalen Berechtigung gilt: Benutzer sollten nur auf die unbedingt notwendigen Funktionen, Dateien, URLs, Controller, Dienste und andere Ressourcen zugreifen können. Dies bedeutet Schutz vor Spoofing und Ausweitung der Berechtigungen.\n\nD: 5 / R: 4 / E: 4 / A: 5 / Neuer DREA: 18",
+                  "description": "Ein Angreifer könnte durch Ausnutzen einer Schwachstelle im SIEM (z. B. fehlerhafte Rollenverwaltung, unsichere Plugins oder Remote Code Execution in der Log-Parsing-Engine) höhere Rechte erlangen und damit:\nAdmin-Zugriff auf angeschlossene Systeme erhalten,\nLogs manipulieren (Spuren verwischen),\n2FA-/OTT-Konfiguration ändern,\nweitere Systeme im Trust-Zone kompromittieren\n\nCAPEC-ID: CAPEC-233 – Privilege Escalation\nMITRE ATT&CK Taktik: A0004 – Privilege Escalation\n\nD: 10 / R: 7 / E: 7 / A: 10 / DREA: 34",
+                  "mitigation": "Strikte Rollen- und Rechteverwaltung (RBAC) umsetzen, damit ein Angreifer durch Log Injection keine höheren Rechte erhalten kann und SIEM Benutzer Least Privilege erhalten.\n\nASVS: CWE 285 (4.1.3): Prüfen Sie, dass das Prinzip der minimalen Berechtigung gilt: Benutzer sollten nur auf die unbedingt notwendigen Funktionen, Dateien, URLs, Controller, Dienste und andere Ressourcen zugreifen können. Dies bedeutet Schutz vor Spoofing und Ausweitung der Berechtigungen.\n\numsetzung: Ein Angreifer kann durch Log Injection keine höheren Rechte erlangen, und SIEM-Nutzer arbeiten strikt nach dem Prinzip „Least Privilege“.\n\nD: 5 / R: 4 / E: 4 / A: 5 / Neuer DREA: 18",
                   "modelType": "STRIDE",
                   "new": false,
                   "number": 108,
@@ -2087,7 +2164,7 @@
                 "repudiation": 0,
                 "informationDisclosure": 0,
                 "denialOfService": 0,
-                "elevationOfPrivilege": 4
+                "elevationOfPrivilege": 6
               }
             }
           },
@@ -2269,7 +2346,7 @@
     ],
     "reviewer": "Georg Neugebauer",
     "diagramTop": 10,
-    "threatTop": 109
+    "threatTop": 110
   },
   "version": "2.5.0"
 }
